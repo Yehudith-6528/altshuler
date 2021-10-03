@@ -1,0 +1,11 @@
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { getCoingecko } from './middlewares/crud';
+import moviesReducer from './reducers/movies';
+
+const reducer = combineReducers({ moviesReducer });
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(getCoingecko)));
+window.store = store
+
+export default store;
